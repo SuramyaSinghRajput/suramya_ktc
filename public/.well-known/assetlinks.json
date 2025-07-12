@@ -1,0 +1,11 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.app.testseries.studydost",
+      "sha256_cert_fingerprints":
+        ["5E:94:71:EC:65:47:84:A1:6D:86:2F:A7:55:F4:EB:A9:0A:35:41:6D:D3:C0:D7:67:BB:58:23:1E:93:FE:18:90"]
+    }
+  }
+]

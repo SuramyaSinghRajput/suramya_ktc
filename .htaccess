@@ -1,0 +1,46 @@
+<IfModule mod_rewrite.c>
+    <IfModule mod_negotiation.c>
+        Options -MultiViews -Indexes
+    </IfModule>
+
+    RewriteEngine On
+
+    # Handle Authorization Header
+    RewriteCond %{HTTP:Authorization} .
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+    # Redirect Trailing Slashes If Not A Folder...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_URI} (.+)/$
+    RewriteRule ^ %1 [L,R=301]
+
+    # Handle Front Controller...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ index.php [L]
+</IfModule>
+<Files .env>
+    order allow,deny
+    Deny from all
+</Files>
+<files ~ "^.*\.([Hh][Tt][Aa])">
+order allow,deny
+deny from all
+satisfy all
+</files>
+<IfModule mod_setenvif.c>
+  SetEnvIfNoCase User-Agent ^$ keep_out
+  SetEnvIfNoCase User-Agent (pycurl|casper|cmsworldmap|diavol|dotbot) keep_out
+  SetEnvIfNoCase User-Agent (flicky|ia_archiver|jakarta|kmccrew) keep_out
+  SetEnvIfNoCase User-Agent (purebot|comodo|feedfinder|planetwork) keep_out
+  <Limit GET POST PUT>
+    Order Allow,Deny
+    Allow from all
+    Deny from env=keep_out
+  </Limit>
+</IfModule>
+<Files ~ "\.(js|css)$">
+  order allow,deny
+  allow from all
+</Files>
+
